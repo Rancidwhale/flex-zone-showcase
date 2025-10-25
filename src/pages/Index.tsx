@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { FeatureCard } from "@/components/FeatureCard";
 import { Dumbbell, Target, TrendingUp, Users, Calendar, Trophy } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-fitness.jpg";
 
 const Index = () => {
@@ -54,13 +55,15 @@ const Index = () => {
                 FlexZone
               </span>
             </div>
-            <Button 
-              size="lg" 
-              className="tap-target font-semibold"
-              aria-label="Log in to your account"
-            >
-              Log In
-            </Button>
+            <Link to="/login">
+              <Button 
+                size="lg" 
+                className="tap-target font-semibold"
+                aria-label="Log in to your account"
+              >
+                Log In
+              </Button>
+            </Link>
           </nav>
         </div>
       </header>
@@ -86,22 +89,26 @@ const Index = () => {
                   Track your workouts, create custom plans, and achieve your fitness goals with intelligent tools designed for real results.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <Button 
-                    size="lg" 
-                    variant="secondary"
-                    className="tap-target text-lg font-semibold h-14 px-8"
-                    aria-label="Get started with FlexZone"
-                  >
-                    Get Started Free
-                  </Button>
-                  <Button 
-                    size="lg" 
-                    variant="outline"
-                    className="tap-target text-lg font-semibold h-14 px-8 bg-white/10 text-white border-white/20 hover:bg-white/20 hover:text-white"
-                    aria-label="Learn more about FlexZone"
-                  >
-                    Learn More
-                  </Button>
+                  <Link to="/signup">
+                    <Button 
+                      size="lg" 
+                      variant="secondary"
+                      className="tap-target text-lg font-semibold h-14 px-8"
+                      aria-label="Get started with FlexZone"
+                    >
+                      Get Started Free
+                    </Button>
+                  </Link>
+                  <Link to="/learn-more">
+                    <Button 
+                      size="lg" 
+                      variant="outline"
+                      className="tap-target text-lg font-semibold h-14 px-8 bg-white/10 text-white border-white/20 hover:bg-white/20 hover:text-white"
+                      aria-label="Learn more about FlexZone"
+                    >
+                      Learn More
+                    </Button>
+                  </Link>
                 </div>
               </div>
 
@@ -161,14 +168,16 @@ const Index = () => {
             <p className="text-lg sm:text-xl mb-8 text-white/90 max-w-2xl mx-auto">
               Join thousands of fitness enthusiasts who are already transforming their lives with FlexZone.
             </p>
-            <Button 
-              size="lg"
-              variant="secondary"
-              className="tap-target text-lg font-semibold h-14 px-8"
-              aria-label="Sign up for FlexZone"
-            >
-              Sign Up Now
-            </Button>
+            <Link to="/signup">
+              <Button 
+                size="lg"
+                variant="secondary"
+                className="tap-target text-lg font-semibold h-14 px-8"
+                aria-label="Sign up for FlexZone"
+              >
+                Sign Up Now
+              </Button>
+            </Link>
           </div>
         </section>
       </main>
