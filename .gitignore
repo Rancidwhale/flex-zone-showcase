@@ -1,3 +1,6 @@
+# packages
+./backend/venv
+./backend/__pycache__
 # Logs
 logs
 *.log
