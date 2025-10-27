@@ -1,6 +1,6 @@
 # packages
 ./backend/venv
-./backend/__pycache__
+./backend/__pycache__/main.cpython-314.pyc
 # Logs
 logs
 *.log
