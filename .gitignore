@@ -1,6 +1,8 @@
 # packages
 ./backend/venv
 ./backend/__pycache__/main.cpython-314.pyc
+docker-compose.yml
+
 # Logs
 logs
 *.log
