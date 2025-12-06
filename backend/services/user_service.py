@@ -1,6 +1,6 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from models.user import User
 from models.token import RefreshToken
@@ -8,7 +8,7 @@ from models.token import RefreshToken
 from schemas.user import UserCreate, UserLogin
 
 from utils.hashing import hash_password, verify_password
-from utils.jwt import create_access_token, create_refresh_token
+from utils.jwt import create_access_token, create_refresh_token, hash_token
 
 
 def register_user(user_data: UserCreate, db: Session):
@@ -56,8 +56,12 @@ def authenticate_user(credentials: UserLogin, db: Session):
     token_record = RefreshToken(
         user_id= user.id,
         token_hash= hash_token(refresh_token),
-        expiry_at=datetime.utcnow() + timedelta(days=7)
+        expiry_at=datetime.now(timezone.utc) + timedelta(days=7)
     )
+
+    db.add(token_record)
+    db.commit()
+
     return  {
         "access_token": access_token,
         "refresh_token": refresh_token,

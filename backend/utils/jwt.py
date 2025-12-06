@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from jose import jwt, JWTError
 import hashlib
 import os
@@ -16,7 +16,7 @@ def create_access_token(data: dict):
     We sign with a separate secret to separate concerns.
     """
     to_encode = data.copy()
-    expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    expire = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     to_encode.update({"exp": expire})
     token = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return token
@@ -27,12 +27,12 @@ def create_refresh_token(data: dict):
     We sign with a separate secret to separate concerns.
     """
     to_encode = data.copy()
-    expire = datetime.utcnow() + timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS)
+    expire = datetime.now(timezone.utc) + timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS)
     to_encode.update({'exp': expire})
     token = jwt.encode(to_encode, REFRESH_SECRET_KEY, algorithm=ALGORITHM)
     return token
 
-def verify_access_token(token: str):
+def verify_access_token(token: str ):
     """
     Decodes and validates access token. Raises JWTError if invalid/expired.
     """
